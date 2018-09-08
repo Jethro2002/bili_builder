@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>[beta 2.0]B站高级简介生成器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="jquery-1.9.1.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="bootstrap-colorpicker.js"></script>
+    <link rel="stylesheet" href="bootstrap-colorpicker.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <div id="welcome">
+        <h3>欢迎来到<br />B站高级简介生成器 Beta2.0</h3>
+        <p>我们很自豪地告诉您，此高级简介生成器总代码字符数已突破4w，开发者每天几乎都会进行更新。</p>
+        <p>在使用本高级简介生成器时，请注意以下事项：<br />1.本生成器仅支持在<span>谷歌内核浏览器</span>下使用，包括：Chrome浏览器，QQ浏览器，360浏览器，搜狗浏览器，在IE以及Win10的edge浏览器下使用会出现卡顿或一些未知错误。<br />2.请在<span>1100px * 480px</span>大小以上的分辨率设备上使用以获得最佳体验。<br />3.如遇到问题或漏洞可以联系邮箱<span>jieck_loo@163.com</span>或者直接添加开发者<span>QQ377592235</span>进行咨询&反馈。</p>
+        <button type="button" class="btn btn-primary" onclick="$('#welcome').hide()">开始使用</button>
+        <button type="button" class="btn btn-default" onclick="window.open('update.txt','_blank');">查看更新日志</button>
+    </div>
+    <header><h3>[beta 2.0] B站高级简介生成器</h3><span>By <a href="https://live.bilibili.com/309006" target="_blank" title="点击前往飞飞的直播间">不会编程的飞飞</a>&nbsp;&nbsp;&nbsp;&nbsp;最后更新：<a href="update.txt" target="_blank" title="点击查看更新日志">2018/8/29</a></span></header>
+    <div id="edit">
+        <h1>编辑区</h1>
+        <div id="edit_nav">
+            <a onclick="change_edit('1',$(this))" style="background: rgb(212, 212, 212);">背景设置</a><a onclick="change_edit('2',$(this))">内容更改</a><a onclick="change_edit('3',$(this))">资源推荐</a>
+        </div>
+        <div>
+            <!--背景设置-->
+            <div class="edit-this" id="edit_1" style="margin-left: 0px;opacity: 1;">
+                <h4>纯色背景：</h4>
+                <div id="background-color" class="input-group colorpicker-component">
+                    <input type="text" class="form-control input-lg" value="#e2e2e2"/>
+                    <span class="input-group-addon"><i></i></span>
+                </div>
+                <h4>图片URL：</h4>
+                <div class="form-group">
+                    <input id="background-image" class="form-control" id="background_url" placeholder="你可以在这里设置图片链接，如果图片有效，背景将会是图片不是纯色" />
+                </div>
+            </div>
+            <!--内容更改-->
+            <div class="edit-this" id="edit_2" style="display: none;">
+                <h4>在编辑区修改内容，在左侧展示区移动内容位置</h4>
+                <p>在文本输入框内划选文字，可以增加超链接（该功能测试中）</p>
+                <p>通过上下调节文本框顺序，可以更改在手机端显示文字的顺序（电脑端所有元素为定位状态，无影响）</p>
+                <div id="edit-out">
+                <div class="edit-text" data-id="0">
+                    <span>输入框0：</span>
+                    <textarea data-id="0" class="form-control shurukuang" rows="3" placeholder="在这里输入内容">在这里输入内容</textarea>
+                    <div class="font-css" data-id="0">
+                        <div class="font-css-this">
+                            <div class="input-group">
+                                <div class="input-group-addon">字体大小</div>
+                                <input id="font-css-size" type="text" class="form-control" id="exampleInputAmount" value="12">
+                                <div class="input-group-addon">px</div>
+                                <div class="input-group-addon">元素宽度</div>
+                                <input id="font-css-width" type="text" class="form-control" id="exampleInputAmount">
+                                <div class="input-group-addon">px</div>
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon">向外延伸</div>
+                                <input id="font-css-padding" type="text" class="form-control" id="exampleInputAmount">
+                                <div class="input-group-addon">px</div>
+                                <div class="input-group-addon">圆角大小</div>
+                                <input id="font-css-border-radius" type="text" class="form-control" id="exampleInputAmount">
+                                <div class="input-group-addon">px</div>
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon">字体颜色</div>
+                                <div id="font-color" class="input-group colorpicker-component">
+                                    <input type="text" class="form-control input-lg" value="#646c7a"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                                <div class="input-group-addon">背景颜色</div>
+                                <div id="font-color-background" class="input-group colorpicker-component">
+                                    <input type="text" class="form-control input-lg" value="rgba(0, 0, 0, 0)"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn btn-primary btn-lg btn-block add" onclick="open_edit('0')">属性调整</div><div class="btn btn-danger btn-lg btn-block del" data-id="0" onclick="open_del($(this).data('id'))">删除元素</div><div class="btn btn-default btn-lg btn-block to-top" onclick="to_top($(this))">向上移</div><div class="btn btn-default btn-lg btn-block to-bottom" onclick="to_bottom($(this))">向下移</div>
+                </div>
+                </div>
+                <div id="edit_link">
+                    <div class="input-group">
+                        <div class="input-group-addon">设置超链接</div>
+                        <input id="font-css-padding" type="text" class="form-control" id="exampleInputAmount" placeholder="http://www.bilibili.com/">
+                        <div class="btn btn-info" onclick="edit_link()">设置</div>
+                        <div class="btn btn-warning" onclick="edit_strong()">字体加粗</div>
+                    </div>
+                </div>
+                <!--<div class="input-group font-css">
+                    <div class="input-group-addon input-group-addon-left">字体大小</div>
+                    <input type="text" class="form-control" id="exampleInputAmount">
+                    <div class="input-group-addon input-group-addon-right">px</div>
+                </div>-->
+                <p>
+                    <button type="button" class="btn btn-primary" onclick="add('text')">增加文本</button>
+                    <button type="button" class="btn btn-default" onclick="add('image')">增加图片</button>
+                </p>
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $('#background-color,#font-color,#font-color-background').colorpicker();
+                });
+            </script>
+            <!--资源推荐-->
+            <div class="edit-this" id="edit_3" style="display: none;">
+                <h4>推荐背景：</h4>
+                <img src="https://ws1.sinaimg.cn/large/aab26956gy1ftq56jb67pj20p506eju4.jpg" title="点击切换" onclick="change_bg($(this))" />
+                <img src="https://ws1.sinaimg.cn/large/aab26956gy1ftq58ba1t0j20yi08otft.jpg" title="点击切换" onclick="change_bg($(this))" />
+                <script>
+                    function change_bg(img){
+                        var bg = img.attr("src");
+                        div = "<div style=\"background-image:url("+bg+");background-color:"+$("#background-color input").val()+";background-size: auto 100%;width: 905px;height: 230px;position: relative;overflow: hidden;\">";
+                        $("#exhibition").css({"background-image":"url("+bg+")","background-color":$("#background-color input").val(),"background-size":"auto 100%"});
+                        refresh();
+                    }
+                </script>
+            </div>
+        </div>
+        <hr />
+        <div id="output-out">
+            <h3>HTML代码输出</h3>
+            <textarea id="output" class="form-control" rows="6"></textarea>
+            <h3>手机客户端视图</h3>
+            <div id="phone_output">
+                <p data-id="0" style="position:absolute;margin:0;word-break: break-all;">在这里输入内容</p>
+            </div>
+        </div>
+    </div>
+    <!--展示区-->
+    <div id="show">
+        <div id="exhibition-out">
+            <div id="exhibition"><p data-id="0" style="position:absolute;margin:0;word-break: break-all;left:0;top:0;">在这里输入内容</p></div>
+            <div id="hint-line"><span id="hint-line-WH"></span><span id="hint-line-XY"></span></div>
+        </div>
+        <img id="show-bottom" src="edit_bg.jpg" />
+        <div id="float" onclick="open_del($(this).data('del-id'))" data-type="text" data-del-id="0">删除</div>
+    </div>
+
+    <!-- 删除提示框 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">真的要删除吗？</h4>
+            </div>
+            <div class="modal-body">
+            你确定要删除吗？这将无法恢复！
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">手滑了，返回</button>
+            <button type="button" class="btn btn-primary" id="del-button" onclick="del('0')">确认删除</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
